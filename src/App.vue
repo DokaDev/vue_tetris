@@ -421,6 +421,12 @@ export default {
   gap: 20px;
   max-width: 100%;
   margin: 0 auto;
+  justify-content: center; /* 게임판 중앙 정렬 */
+}
+
+/* 각 컴포넌트가 적절한 크기와 여백을 가지도록 설정 */
+:deep(.tetris-board), :deep(.hold-piece-container), :deep(.next-piece-container) {
+  margin: 0 5px;
 }
 
 /* 게임이 작은 화면에서도 표시되도록 반응형 디자인 적용 */
@@ -434,6 +440,10 @@ export default {
     flex-direction: column;
     align-items: center;
     gap: 5px;
+  }
+  
+  :deep(.tetris-board), :deep(.hold-piece-container), :deep(.next-piece-container) {
+    margin: 10px 0;
   }
 }
 
