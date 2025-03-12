@@ -313,6 +313,11 @@ export default {
     window.addEventListener('keydown', (e) => {
       if (!this.isPlaying || this.isPaused) return;
       
+      // 게임 플레이 중 방향키와 특정 키 입력 시 기본 동작 방지
+      if (['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', ' ', 'c', 'C', 'z', 'Z', 'x', 'X'].includes(e.key)) {
+        e.preventDefault(); // 브라우저의 기본 스크롤 동작 방지
+      }
+      
       switch (e.key) {
         case 'ArrowLeft':
           this.currentPiece.x--;
@@ -402,6 +407,34 @@ export default {
   flex-direction: column;
   align-items: center;
   gap: 20px;
+  min-height: 100vh; /* 전체 화면 높이 활용 */
+  padding: 20px;
+  box-sizing: border-box;
+  overflow: hidden; /* 추가 스크롤 방지 */
+  position: relative; /* 포지션 컨텍스트 생성 */
+}
+
+/* 게임 영역이 너무 커지지 않도록 최대 크기 설정 */
+.game-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+/* 게임이 작은 화면에서도 표시되도록 반응형 디자인 적용 */
+@media (max-width: 768px) {
+  .game-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .game-info {
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+  }
 }
 
 h1 {
@@ -416,16 +449,12 @@ h1 {
   font-size: 18px;
 }
 
-.game-container {
-  display: flex;
-  align-items: flex-start;
-  gap: 20px;
-}
-
 .controls {
   display: flex;
   gap: 10px;
   margin: 10px 0;
+  flex-wrap: wrap; /* 작은 화면에서 버튼이 줄바꿈되도록 */
+  justify-content: center;
 }
 
 button {
