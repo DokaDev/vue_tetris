@@ -380,7 +380,7 @@ export default {
     </div>
     <div class="game-container">
       <HoldPiece :piece="holdPiece" :canHold="canHold" />
-      <TetrisBoard :board="board" />
+      <TetrisBoard :board="board" :currentPiece="currentPiece" />
       <NextPiece :piece="nextPiece" />
     </div>
     <div class="controls">

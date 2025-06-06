@@ -18,12 +18,17 @@ export default {
     board: {
       type: Array,
       required: true
+    },
+    currentPiece: {
+      type: Object,
+      required: false,
+      default: null
     }
   },
   computed: {
     displayBoard() {
       // 현재 보드 상태에 현재 조각을 추가하여 표시
-      if (!this.$parent.currentPiece) {
+      if (!this.currentPiece) {
         return this.board;
       }
       
@@ -31,7 +36,7 @@ export default {
       const displayBoard = this.board.map(row => [...row]);
       
       // 현재 조각 추가
-      const piece = this.$parent.currentPiece;
+      const piece = this.currentPiece;
       if (piece) {
         for (let y = 0; y < piece.shape.length; y++) {
           for (let x = 0; x < piece.shape[y].length; x++) {
